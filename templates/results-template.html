@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .results-container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .result-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-url {
+            font-size: 18px;
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .result-url:hover {
+            text-decoration: underline;
+        }
+
+        .result-snippet {
+            font-size: 16px;
+            color: #555;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="results-container">
+        <h1>Search Results</h1>
+        <p>You searched for: {{ query }}</p>
+        {% if results %}
+            {% for result in results %}
+                <div class="result-item">
+                    <!-- Display URL as a clickable link -->
+                    <a href="{{ result.url }}" class="result-url" target="_blank">{{ result.url }}</a>
+                    <!-- Display snippet -->
+                    <div class="result-snippet">{{ result.snippet|safe }}</div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
